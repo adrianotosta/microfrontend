@@ -1,0 +1,35 @@
+
+version: "3.7"
+services:
+
+  app-react:
+    container_name: app-react
+    build:
+      context: ./react
+
+  app-svelte:
+    container_name: app-svelte
+    build:
+      context: ./svelte
+
+  app-vanilla:
+    container_name: app-vanilla
+    build:
+      context: ./vanilla
+
+  app-vue:
+    container_name: app-vue
+    build:
+      context: ./vue
+
+  orchestrator:
+    container_name: orchestrator
+    ports:
+      - 80:80
+    depends_on:
+      - app-react
+      - app-svelte
+      - app-vanilla
+      - app-vue
+    build:
+      context: ./orchestrator
